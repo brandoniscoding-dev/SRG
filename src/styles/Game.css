@@ -1,0 +1,66 @@
+/* Style pour l'animation lente du titre */
+.animate-bounce-slow {
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.grid-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+  width: 400px; /* 20 * 20px */
+  height: 400px; /* 20 * 20px */
+}
+
+.grid-cell {
+  border: 1px solid #333; /* Bordure fine pour les cases internes */
+  box-sizing: border-box;
+}
+
+.grid-container::before,
+.grid-container::after,
+.grid-container > .border-top,
+.grid-container > .border-bottom,
+.grid-container > .border-left,
+.grid-container > .border-right {
+  content: '';
+  position: absolute;
+  background-color: #444; /* Couleur de la bordure épaisse */
+}
+
+.grid-container::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px; /* Épaisseur de la bordure en haut */
+}
+
+.grid-container::after {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px; /* Épaisseur de la bordure en bas */
+}
+
+.border-left {
+  top: 0;
+  left: 0;
+  width: 2px; /* Épaisseur de la bordure à gauche */
+  height: 100%;
+}
+
+.border-right {
+  top: 0;
+  right: 0;
+  width: 2px; /* Épaisseur de la bordure à droite */
+  height: 100%;
+}

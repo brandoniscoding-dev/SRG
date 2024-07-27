@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MainMenu.css */
+@layer components {
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite ease-in-out;
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.1);
+    }
+  }
+}
+
+@layer utilities {
+  .bg-gradient-to-r {
+    background-image: linear-gradient(to right, #1f1f1f, #3a3a3a, #1f1f1f);
+  }
+}
