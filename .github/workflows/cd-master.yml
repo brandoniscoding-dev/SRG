@@ -1,4 +1,4 @@
-name: CD - Deploy to GitHub Pages
+name: CI/CD - Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -6,12 +6,43 @@ on:
       - master
 
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  build:
+    name: Build project
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupérer les fichiers buildés depuis les artefacts
+      # 1. Cloner le code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configurer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Compiler le projet (Vite, React, etc.)
+      - name: Build project
+        run: npm run build
+
+      # 5. Sauvegarder le dossier ./dist en tant qu’artefact
+      - name: Upload production build
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build # Ce job attend que le job 'build' soit terminé
+
+    steps:
+      # 1. Télécharger les fichiers générés
       - name: Download build files
         uses: actions/download-artifact@v4
         with:
