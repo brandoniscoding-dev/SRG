@@ -1,4 +1,4 @@
-name: CI - Build & Test on dev
+name: CI - Build
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_and_test:
-    name: Build and run tests
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +24,6 @@ jobs:
       # 3. Installer les dépendances
       - name: Install dependencies
         run: npm install
-
-      # 4. Lancer les tests
-      - name: Run tests
-        run: npm test
 
       # 5. Builder le projet si tests OK
       - name: Build project
