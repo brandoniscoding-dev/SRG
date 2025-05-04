@@ -3,7 +3,7 @@ name: CI - Build
 on:
   push:
     branches:
-      - dev
+      - dev  # Ceci va activer le workflow pour la branche dev
 
 jobs:
   build_and_test:
@@ -35,3 +35,24 @@ jobs:
         with:
           name: production-files
           path: ./dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build_and_test  # Ce job attend que le job 'build_and_test' soit terminé
+
+    steps:
+      # 1. Télécharger les fichiers générés
+      - name: Download build files
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      # 2. Déployer sur GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
