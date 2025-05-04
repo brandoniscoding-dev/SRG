@@ -8,14 +8,14 @@
 @keyframes reveal {
   0% {
     background-position: 100% 0;
-    color: #fff; /* Commence par blanc */
+    color: #fff; 
   }
   50% {
-    color: #000; /* Passe au noir au milieu */
+    color: #000; 
   }
   100% {
     background-position: -100% 0;
-    color: #fff; /* Revient au blanc à la fin */
+    color: #fff; 
   }
 }
 
@@ -28,54 +28,7 @@
   }
 }
 
-.signature-container {
-  position: fixed;
-  bottom: 10px; /* Ajustez la position selon vos besoins */
-  width: 100%;
-  text-align: center;
-  z-index: 1000; /* Assurez-vous qu'il est au premier plan */
-}
 
-.footer-link {
-  font-size: 0.8rem; /* Petite taille de texte */
-  text-decoration: none;
-  display: inline-block;
-  position: relative;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
-  background-size: 200% 100%;
-  animation: reveal 3s linear infinite, oscillate 1.5s ease-in-out infinite;
-  padding: 5px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Assurez-vous que les effets restent dans les limites du texte */
-  transition: transform 0.3s ease;
-}
-
-.footer-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.4s ease;
-  pointer-events: none;
-}
-
-.footer-link:hover {
-  animation: reveal 3s linear infinite, none; /* Arrête l'oscillation au survol */
-  transform: scale(1.05); /* Légère agrandissement au survol */
-}
-
-.footer-link:active {
-  transform: scale(0.95); /* Réduction au clic */
-}
-
-.footer-link:hover::before {
-  transform: translate(-50%, -50%) scale(1);
-}
 
 body {
   @apply bg-zinc-900;
