@@ -1,20 +1,81 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head >
-  <body class="m-0 p-0">
-    <div id="root"></div>
 
-    <div class="signature-container">
-      <a href="mailto:brandoniscoding4@gmail.com" class="footer-link">
-        Realized by @brandoniscoding
-      </a>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React + TS</title>
 
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <style>
+    .signature-container {
+      position: fixed;
+      bottom: 10px;
+      /* Ajustez la position selon vos besoins */
+      width: 100%;
+      text-align: center;
+      z-index: 1000;
+      /* Assurez-vous qu'il est au premier plan */
+    }
+
+    .footer-link {
+      font-size: 0.8rem;
+      /* Petite taille de texte */
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+      background-size: 200% 100%;
+      animation: reveal 3s linear infinite, oscillate 1.5s ease-in-out infinite;
+      padding: 5px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      /* Assurez-vous que les effets restent dans les limites du texte */
+      transition: transform 0.3s ease;
+    }
+
+    .footer-link::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .footer-link:hover {
+      animation: reveal 3s linear infinite, none;
+      /* Arrête l'oscillation au survol */
+      transform: scale(1.05);
+      /* Légère agrandissement au survol */
+    }
+
+    .footer-link:active {
+      transform: scale(0.95);
+      /* Réduction au clic */
+    }
+
+    .footer-link:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+
+<body class="m-0 p-0">
+  <div id="root"></div>
+
+  <div class="signature-container">
+    <a href="mailto:brandoniscoding4@gmail.com" class="footer-link">
+      Realized by @brandoniscoding
+    </a>
+  </div>
+
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
